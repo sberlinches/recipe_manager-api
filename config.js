@@ -20,5 +20,9 @@ module.exports = {
             mergeParams: false,
             strict: false
         }
+    },
+    cors: {
+        origin: '*',
+        optionsSuccessStatus: 200
     }
 };
