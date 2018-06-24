@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "set NODE_ENV=production&&node ./bin/www.js",
-    "start:dev": "set NODE_ENV=development&&node --inspect ./bin/www.js"
+    "start:dev": "set NODE_ENV=development&&node --inspect ./bin/www.js",
+    "test": "set NODE_ENV=development&&jasmine"
   },
   "engines": {
     "node": "10.*"
@@ -17,6 +18,10 @@
     "express": "4.16.3",
     "body-parser": "1.18.3",
     "cors": "2.8.4",
-    "compression": "1.7.2"
+    "compression": "1.7.2",
+    "jasmine": "3.1.0",
+    "jasmine-core": "3.1.0",
+    "jasmine-spec-reporter": "4.2.1",
+    "request": "2.87.0"
   }
 }
