@@ -3,7 +3,7 @@
 const Recipe = require('../models/recipe.model');
 
 /**
- * Get all recipes
+ * Gets all recipes
  * @param req HTTP request argument
  * @param res HTTP response argument
  */
@@ -13,7 +13,7 @@ exports.getRecipes = function(req, res) {
 };
 
 /**
- * Get a recipe
+ * Gets a recipe
  * @param req HTTP request argument
  * @param res HTTP response argument
  */

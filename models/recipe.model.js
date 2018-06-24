@@ -4,10 +4,10 @@ const Item = require('./item.model');
 
 class Recipe {
 
-    constructor(id, name, ingredients, instructions, estimatedTime) {
+    constructor(id, name, items, instructions, estimatedTime) {
         this.id = id;
         this.name = name;
-        this.ingredients = ingredients;
+        this.items = items;
         this.instructions = instructions;
         this.estimatedTime = estimatedTime;
     };
@@ -32,13 +32,15 @@ let recipes = [
     ),
     new Recipe(
         1,
-        'Moco de pavo',
+        'Raw chicken',
         [
-            new Item('Pavo', 1),
-            new Item('Moco', 1),
+            new Item('Chicken', 1),
+            new Item('Hammer', 1),
         ],
         [
-            'Darle con una maza hasta morir',
+            "Hit the head's chicken with the hammer",
+            "Skin the chicken",
+            "Serve fresh",
         ],
         5
     )
@@ -91,7 +93,7 @@ module.exports.updateRecipe = function(id, recipe) {
     for (let r of recipes)
         if(r.id === id) {
             if(recipe.name) r.name = recipe.name;
-            if(recipe.ingredients) r.ingredients = recipe.ingredients;
+            if(recipe.items) r.items = recipe.items;
             if(recipe.instructions) r.instructions = recipe.instructions;
             if(recipe.estimatedTime) r.estimatedTime = recipe.estimatedTime;
             return r;
