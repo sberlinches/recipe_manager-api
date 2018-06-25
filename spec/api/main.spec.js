@@ -1,8 +1,10 @@
 const request = require('request');
-const server = require('../bin/www');
+const server = require('../../bin/www');
 
-it('returns a JSON payload', (done) => {
-    request.get('http://localhost:8080/api/', function (error, response, body) {
+let uri = "http://localhost:8080/api/";
+
+it('API Handshake', (done) => {
+    request.get(uri, function (error, response, body) {
         /*console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response.statusCode); // Print the response status code if a response was received
         console.log('body:', body); // Print the HTML for the Google homepage.*/

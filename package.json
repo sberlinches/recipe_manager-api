@@ -5,7 +5,8 @@
   "scripts": {
     "start": "set NODE_ENV=production&&node ./bin/www.js",
     "start:dev": "set NODE_ENV=development&&node --inspect ./bin/www.js",
-    "test:dev": "set NODE_ENV=development&&jasmine"
+    "test:class": "asmine \"spec/class/*.spec.js\"",
+    "test:server": "set NODE_ENV=development&&jasmine \"spec/api/*.spec.js\""
   },
   "engines": {
     "node": "10.*"

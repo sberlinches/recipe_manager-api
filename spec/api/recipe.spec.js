@@ -1,5 +1,5 @@
 const request = require('request');
-const server = require('../bin/www');
+const server = require('../../bin/www');
 
 let uri = "http://localhost:8080/api/recipe/";
 let jsonContentType = "application/json; charset=utf-8";
