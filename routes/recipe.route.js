@@ -3,7 +3,7 @@
 const config            = require('../config');
 const express           = require('express');
 const router            = express.Router(config.router.options);
-const recipeController    = require('../controllers/recipe.controller');
+const recipeController  = require('../controllers/recipe.controller');
 
 router.get('/', recipeController.getRecipes);
 router.get('/:id', recipeController.getRecipe);

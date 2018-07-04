@@ -3,6 +3,7 @@
 const app           = require('../app');
 const http          = require('http');
 const mongoClient   = require('mongodb').MongoClient;
+const initDB        = require('./initDB');
 
 // Create the HTTP server
 const server = http.createServer(app);
@@ -15,6 +16,9 @@ mongoClient.connect(app.get('url'), (err, client) => {
 
     // Defines collections
     exports.recipe = db.collection("recipe");
+
+    // Initializes the collections (if it were necessary)
+    initDB.initRecipes();
 
     // Server GO!
     server.listen(app.get('port'), app.get('host'), function() {
