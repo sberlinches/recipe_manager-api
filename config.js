@@ -24,5 +24,9 @@ module.exports = {
     cors: {
         origin: '*',
         optionsSuccessStatus: 200
+    },
+    mongodb: {
+        url: "mongodb://localhost:27017",
+        dbName: "recipe_app"
     }
 };

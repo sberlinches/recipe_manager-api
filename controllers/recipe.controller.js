@@ -1,6 +1,7 @@
 "use strict";
 
-const Recipe = require('../models/recipe.model');
+const ObjectId  = require('mongodb').ObjectId;
+const db        = require('../bin/www');
 
 /**
  * Gets all recipes
@@ -8,8 +9,13 @@ const Recipe = require('../models/recipe.model');
  * @param res HTTP response argument
  */
 exports.getRecipes = function(req, res) {
-    res.status(200)
-       .json(Recipe.getRecipes());
+
+    db.recipe.find().toArray(function (err, result) {
+        if (err) res.status(500).json(err);
+
+        res.status(200)
+            .json(result);
+    });
 };
 
 /**
@@ -18,8 +24,15 @@ exports.getRecipes = function(req, res) {
  * @param res HTTP response argument
  */
 exports.getRecipe = function(req, res) {
-    res.status(200)
-       .json(Recipe.getRecipe(parseInt(req.params.id)));
+
+    let query = {_id: ObjectId(req.params.id)};
+
+    db.recipe.findOne(query, function (err, result) {
+        if (err) res.status(500).json(err);
+
+        res.status(200)
+            .json(result);
+    });
 };
 
 /**
@@ -28,8 +41,13 @@ exports.getRecipe = function(req, res) {
  * @param res HTTP response argument
  */
 exports.createRecipe = function(req, res) {
-    res.status(200)
-       .json(Recipe.createRecipe(req.body));
+
+    db.recipe.insertOne(req.body, null, function (err, result) {
+        if (err) res.status(500).json(err);
+
+        res.status(200)
+            .json(result.ops);
+    });
 };
 
 /**
@@ -38,8 +56,17 @@ exports.createRecipe = function(req, res) {
  * @param res HTTP response argument
  */
 exports.updateRecipe = function(req, res) {
-    res.status(200)
-       .json(Recipe.updateRecipe(parseInt(req.params.id), req.body));
+
+    let query = {_id: ObjectId(req.params.id)};
+    let update = {$set: req.body};
+    let options = {returnNewDocument: true};
+
+    db.recipe.findOneAndUpdate(query, update, options, function (err, result) {
+        if (err) res.status(500).json(err);
+
+        res.status(200)
+            .json(result);
+    });
 };
 
 /**
@@ -48,6 +75,13 @@ exports.updateRecipe = function(req, res) {
  * @param res HTTP response argument
  */
 exports.deleteRecipe = function(req, res) {
-    res.status(200)
-       .json(Recipe.deleteRecipe(parseInt(req.params.id)));
+
+    let query = {_id: ObjectId(req.params.id)};
+
+    db.recipe.findOneAndDelete(query, function (err, result) {
+        if (err) res.status(500).json(err);
+
+        res.status(200)
+            .json(result);
+    });
 };
