@@ -17,6 +17,7 @@ mongoClient.connect(app.get('url'), (err, client) => {
     // Defines collections
     exports.fridge = db.collection("fridge");
     exports.recipe = db.collection("recipe");
+    exports.shoppingList = db.collection("shoppingList");
 
     // Initializes the collections (if it were necessary)
     initDB.initFridge();
