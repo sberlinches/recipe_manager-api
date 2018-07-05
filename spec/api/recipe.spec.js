@@ -1,8 +1,8 @@
 const request = require('request');
-const server = require('../../bin/www');
 
 let uri = "http://localhost:8080/api/recipe/";
 let jsonContentType = "application/json; charset=utf-8";
+let id;
 let options = {json: true, body: {}};
 
 describe('Recipe', () => {
@@ -28,7 +28,8 @@ describe('Recipe', () => {
         options.body.name = name;
 
         request.post(uri, options, function (error, response, body) {
-            options.body.id = body.id;
+
+            id = body._id;
             expect(response.statusCode).toEqual(200);
             expect(response.headers['content-type']).toBe(jsonContentType);
             expect(body.name).toBe(name);
@@ -41,10 +42,10 @@ describe('Recipe', () => {
      */
     it('get', (done) => {
 
-        request.get(uri + options.body.id, function (error, response, body) {
+        request.get(uri + id, function (error, response, body) {
             expect(response.statusCode).toEqual(200);
             expect(response.headers['content-type']).toBe(jsonContentType);
-            expect(JSON.parse(body).name).toBe(options.body.name); //TODO: Unexpectedly, body is a string, so has to be parsed
+            expect(JSON.parse(body).name).toBe(options.body.name); //Unexpectedly, body is a string, so has to be parsed
             done();
         });
     });
@@ -57,10 +58,10 @@ describe('Recipe', () => {
         let name = "updated";
         options.body.name = name;
 
-        request.patch(uri + options.body.id, options, function (error, response, body) {
+        request.patch(uri + id, options, function (error, response, body) {
             expect(response.statusCode).toEqual(200);
             expect(response.headers['content-type']).toBe(jsonContentType);
-            expect(body.name).toBe(name);
+            expect(body.value.name).toBe(name);
             done();
         });
     });
@@ -70,10 +71,10 @@ describe('Recipe', () => {
      */
     it('delete', (done) => {
 
-        request.delete(uri + options.body.id, function (error, response, body) {
+        request.delete(uri + id, function (error, response, body) {
             expect(response.statusCode).toEqual(200);
             expect(response.headers['content-type']).toBe(jsonContentType);
-            expect(body).toBe('1');
+            expect(JSON.parse(body).ok).toEqual(1); //Unexpectedly, body is a string, so has to be parsed
             done();
         });
     });
