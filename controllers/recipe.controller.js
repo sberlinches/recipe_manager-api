@@ -59,7 +59,7 @@ exports.updateRecipe = function(req, res) {
 
     let query = {_id: ObjectId(req.params.id)};
     let update = {$set: req.body};
-    let options = {returnNewDocument: true};
+    let options = {returnOriginal: false};
 
     db.recipe.findOneAndUpdate(query, update, options, function (err, result) {
         if (err) res.status(500).json(err);
