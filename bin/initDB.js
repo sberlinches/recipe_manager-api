@@ -1,6 +1,33 @@
 const db = require('../bin/www');
 
-exports.initRecipes = function() {
+/**
+ * Initializes the fridge collection
+ */
+exports.initFridge = function() {
+
+    let fridge = [
+        {name: "Tomato sauce", quantity: 10},
+        {name: "Mozzarella", quantity: 10},
+        {name: "Basil", quantity: 10},
+        {name: "Tears", quantity: 2}
+    ];
+
+    db.fridge.count(function(err, result) {
+        if (err) throw err;
+
+        if(!result) {
+            db.fridge.insert(fridge, function(err, result) {
+                if (err) throw err;
+                console.log("Fridge collection initialized")
+            })
+        }
+    });
+};
+
+/**
+ * Initializes the recipe collection
+ */
+exports.initRecipe = function() {
 
     let recipes = [
         {
@@ -39,7 +66,7 @@ exports.initRecipes = function() {
         if(!result) {
             db.recipe.insert(recipes, function(err, result) {
                 if (err) throw err;
-                console.log("Recipes collection initialized")
+                console.log("Recipe collection initialized")
             })
         }
     });

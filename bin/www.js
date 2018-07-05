@@ -15,10 +15,12 @@ mongoClient.connect(app.get('url'), (err, client) => {
     let db = client.db(app.get('dbName'));
 
     // Defines collections
+    exports.fridge = db.collection("fridge");
     exports.recipe = db.collection("recipe");
 
     // Initializes the collections (if it were necessary)
-    initDB.initRecipes();
+    initDB.initFridge();
+    initDB.initRecipe();
 
     // Server GO!
     server.listen(app.get('port'), app.get('host'), function() {
