@@ -57,6 +57,8 @@ exports.createRecipe = function(req, res) {
  */
 exports.updateRecipe = function(req, res) {
 
+    delete req.body._id; // Guarantees that the id is not modified
+
     let query = {_id: ObjectId(req.params.id)};
     let update = {$set: req.body};
     let options = {returnOriginal: false};
