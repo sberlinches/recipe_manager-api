@@ -10,7 +10,3 @@ const server = http.createServer(app);
 server.listen(app.get('port'), app.get('host'), function() {
     console.info('Server (%s mode) listening on port: %s ', app.get('env'), server.address().port);
 });
-
-
-
-
