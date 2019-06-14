@@ -3,8 +3,9 @@
   "description": "Node RESTful API",
   "private": true,
   "scripts": {
-    "start": "export NODE_ENV=production&&node ./bin/www.js",
-    "start:dev": "export NODE_ENV=development&&node --inspect ./bin/www.js"
+    "start": "export NODE_ENV=production; node ./bin/www.js",
+    "start:dev": "export NODE_ENV=development; node --inspect ./bin/www.js",
+    "test": "export NODE_ENV=development; jasmine \"spec/api/*.spec.js\""
   },
   "engines": {
     "node": "10.*"
@@ -17,6 +18,11 @@
     "express": "4.16.3",
     "body-parser": "1.18.3",
     "cors": "2.8.4",
-    "compression": "1.7.2"
+    "compression": "1.7.2",
+    "jasmine": "3.1.0",
+    "jasmine-core": "3.1.0",
+    "jasmine-spec-reporter": "4.2.1",
+    "request": "2.87.0",
+    "mongodb": "3.1.0"
   }
 }

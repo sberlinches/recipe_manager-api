@@ -4,13 +4,13 @@ const ObjectId  = require('mongodb').ObjectId;
 const db        = require('../bin/www');
 
 /**
- * Gets all recipes
+ * Gets all items from the shopping list
  * @param req HTTP request argument
  * @param res HTTP response argument
  */
-exports.getRecipes = function(req, res) {
+exports.getItems = function(req, res) {
 
-    db.recipe.find().toArray(function (err, result) {
+    db.shoppingList.find().toArray(function (err, result) {
         if (err) res.status(500).json(err);
 
         res.status(200)
@@ -19,15 +19,15 @@ exports.getRecipes = function(req, res) {
 };
 
 /**
- * Gets a recipe
+ * Gets an item from the shopping list
  * @param req HTTP request argument
  * @param res HTTP response argument
  */
-exports.getRecipe = function(req, res) {
+exports.getItem = function(req, res) {
 
     let query = {_id: ObjectId(req.params.id)};
 
-    db.recipe.findOne(query, function (err, result) {
+    db.shoppingList.findOne(query, function (err, result) {
         if (err) res.status(500).json(err);
 
         res.status(200)
@@ -36,13 +36,13 @@ exports.getRecipe = function(req, res) {
 };
 
 /**
- * Creates a recipe
+ * Adds an item to the shopping list
  * @param req HTTP request argument
  * @param res HTTP response argument
  */
-exports.createRecipe = function(req, res) {
+exports.addItem = function(req, res) {
 
-    db.recipe.insertOne(req.body, null, function (err, result) {
+    db.shoppingList.insertOne(req.body, null, function (err, result) {
         if (err) res.status(500).json(err);
 
         res.status(200)
@@ -51,19 +51,17 @@ exports.createRecipe = function(req, res) {
 };
 
 /**
- * Updates a recipe
+ * Updates an item from the shopping list
  * @param req HTTP request argument
  * @param res HTTP response argument
  */
-exports.updateRecipe = function(req, res) {
-
-    delete req.body._id; // Guarantees that the id is not modified
+exports.updateItem = function(req, res) {
 
     let query = {_id: ObjectId(req.params.id)};
     let update = {$set: req.body};
     let options = {returnOriginal: false};
 
-    db.recipe.findOneAndUpdate(query, update, options, function (err, result) {
+    db.shoppingList.findOneAndUpdate(query, update, options, function (err, result) {
         if (err) res.status(500).json(err);
 
         res.status(200)
@@ -72,15 +70,15 @@ exports.updateRecipe = function(req, res) {
 };
 
 /**
- * Deletes a recipe
+ * Deletes an item from the shopping list
  * @param req HTTP request argument
  * @param res HTTP response argument
  */
-exports.deleteRecipe = function(req, res) {
+exports.deleteItem = function(req, res) {
 
     let query = {_id: ObjectId(req.params.id)};
 
-    db.recipe.findOneAndDelete(query, function (err, result) {
+    db.shoppingList.findOneAndDelete(query, function (err, result) {
         if (err) res.status(500).json(err);
 
         res.status(200)

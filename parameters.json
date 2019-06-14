@@ -1,10 +1,10 @@
-{
-  "production": {
-      "host": null,
+  {
+    "production": {
+      "host": "127.0.0.1",
       "port": 8080
   },
-  "development": {
-      "host": null,
+    "development": {
+      "host": "127.0.0.1",
       "port": 8080
   }
 }

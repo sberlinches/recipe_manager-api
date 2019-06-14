@@ -17,5 +17,7 @@ app.use(router);
 app.set('host', config.host);
 app.set('port', config.port);
 app.set('router', config.router);
+app.set('url', config.mongodb.url);
+app.set('dbName', config.mongodb.dbName);
 
 module.exports = app;
