@@ -3,9 +3,9 @@
   "description": "Node RESTful API",
   "private": true,
   "scripts": {
-    "start": "set NODE_ENV=production&&node ./bin/www.js",
-    "start:dev": "set NODE_ENV=development&&node --inspect ./bin/www.js",
-    "test:server": "set NODE_ENV=development&&jasmine \"spec/api/*.spec.js\""
+    "start": "export NODE_ENV=production; node ./bin/www.js",
+    "start:dev": "export NODE_ENV=development; node --inspect ./bin/www.js",
+    "test": "export NODE_ENV=development; jasmine \"spec/api/*.spec.js\""
   },
   "engines": {
     "node": "10.*"
